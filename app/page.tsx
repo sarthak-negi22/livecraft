@@ -4,8 +4,8 @@ import LeftSidebar from "@/components/LeftSidebar";
 import Live from "@/components/Live";
 import Navbar from "@/components/Navbar";
 import RightSideBar from "@/components/RightSideBar";
-import { handleCanvasMouseDown, handleCanvasMouseUp, handleCanvasObjectModified, handleCanvaseMouseMove, handleResize, initializeFabric, renderCanvas } from "@/lib/canvas";
-import { ActiveElement, CustomFabricObject } from "@/types/type";
+import { handleCanvasMouseDown, handleCanvasMouseUp, handleCanvasObjectModified, handleCanvasObjectScaling, handleCanvasSelectionCreated, handleCanvaseMouseMove, handleResize, initializeFabric, renderCanvas } from "@/lib/canvas";
+import { ActiveElement, Attributes, CustomFabricObject } from "@/types/type";
 import { useEffect, useRef, useState } from "react";
 import { fabric } from "fabric";
 import { useMutation, useRedo, useStorage, useUndo } from "@/liveblocks.config";
@@ -24,8 +24,19 @@ export default function Page() {
   const selectedShapeRef = useRef<string | null>(null);
   const activeObjectRef = useRef<fabric.Object | null>(null);
   const imageInputRef = useRef<HTMLInputElement>(null);
+  const isEditingRef = useRef(false);
 
   const canvasObjects = useStorage((root) => root.canvasObjects);
+
+  const [elementAttributes, setElementAttributes] = useState<Attributes>({
+    width : '',
+    height : '',
+    fontSize : '',
+    fontFamily: '',
+    fontWeight : '',
+    fill : '#aabbcc',
+    stroke : 'aabbcc',
+  });
 
   const syncShapeInStorage = useMutation(({ storage }, object) => {
     if(!object) return;
@@ -133,7 +144,22 @@ export default function Page() {
         options,
         syncShapeInStorage,
       })
+    });
+
+    canvas.on("selection:created", (options) => {
+      handleCanvasSelectionCreated({
+        options,
+        isEditingRef,
+        setElementAttributes,
+      })
     })
+
+    canvas.on("object:scaling", (options) => {
+      handleCanvasObjectScaling({
+        options,
+        setElementAttributes
+      })
+    });
     
     window.addEventListener("resize", () => {
       handleResize({ canvas: fabricRef.current, })
@@ -185,7 +211,14 @@ export default function Page() {
             allShapes = {Array.from(canvasObjects)}
           />
             <Live canvasRef = { canvasRef } />
-          <RightSideBar />
+          <RightSideBar 
+            elementAttributes = { elementAttributes }
+            setElementAttributes = { setElementAttributes }
+            fabricRef = { fabricRef }
+            isEditingRef = { isEditingRef }
+            activeObjectRef = { activeObjectRef }
+            syncShapeInStorage = { syncShapeInStorage }
+          />
         </section>
     </main>
   );
