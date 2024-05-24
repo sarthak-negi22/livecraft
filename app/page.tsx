@@ -4,7 +4,7 @@ import LeftSidebar from "@/components/LeftSidebar";
 import Live from "@/components/Live";
 import Navbar from "@/components/Navbar";
 import RightSideBar from "@/components/RightSideBar";
-import { handleCanvasMouseDown, handleCanvasMouseUp, handleCanvasObjectModified, handleCanvasObjectScaling, handleCanvasSelectionCreated, handleCanvaseMouseMove, handleResize, initializeFabric, renderCanvas } from "@/lib/canvas";
+import { handleCanvasMouseDown, handleCanvasMouseUp, handleCanvasObjectModified, handleCanvasObjectScaling, handleCanvasSelectionCreated, handleCanvaseMouseMove, handlePathCreated, handleResize, initializeFabric, renderCanvas } from "@/lib/canvas";
 import { ActiveElement, Attributes, CustomFabricObject } from "@/types/type";
 import { useEffect, useRef, useState } from "react";
 import { fabric } from "fabric";
@@ -160,6 +160,14 @@ export default function Page() {
         setElementAttributes
       })
     });
+
+    canvas.on("path:created", (options) => {
+      handlePathCreated({
+        options,
+        syncShapeInStorage,
+      })
+    });
+    
     
     window.addEventListener("resize", () => {
       handleResize({ canvas: fabricRef.current, })
@@ -210,7 +218,7 @@ export default function Page() {
           <LeftSidebar 
             allShapes = {Array.from(canvasObjects)}
           />
-            <Live canvasRef = { canvasRef } />
+            <Live canvasRef = { canvasRef } undo = { undo } redo = { redo } />
           <RightSideBar 
             elementAttributes = { elementAttributes }
             setElementAttributes = { setElementAttributes }
