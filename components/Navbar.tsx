@@ -22,7 +22,7 @@ const Navbar = ({ activeElement, imageInputRef, handleImageUpload, handleActiveE
       <Link href = "/" >
         <div className = "flex items-center justify-center" >
           <Image src="/assets/favicon.ico" alt="FigPro Logo" width={58} height={20} />
-          <h3 className="px-2 py-4 text-xl">LiveCraft</h3>
+          <h3 className="px-2 py-4 text-xl text-primary-grey-300">LiveCraft</h3>
         </div>
       </Link>
 
