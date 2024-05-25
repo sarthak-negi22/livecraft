@@ -82,6 +82,32 @@ export const fontFamilyOptions = [
   { value: "Times New Roman", label: "Times New Roman" },
   { value: "Comic Sans MS", label: "Comic Sans MS" },
   { value: "Brush Script MT", label: "Brush Script MT" },
+  { value: "Arial", label: "Arial" },
+  { value: "Verdana", label: "Verdana" },
+  { value: "Courier New", label: "Courier New" },
+  { value: "Georgia", label: "Georgia" },
+  { value: "Palatino", label: "Palatino" },
+  { value: "Garamond", label: "Garamond" },
+  { value: "Impact", label: "Impact" },
+  { value: "Trebuchet MS", label: "Trebuchet MS" },
+  { value: "Lucida Console", label: "Lucida Console" },
+  { value: "Franklin Gothic Medium", label: "Franklin Gothic Medium" },
+  { value: "Tahoma", label: "Tahoma" },
+  { value: "Arial Black", label: "Arial Black" },
+  { value: "Gill Sans", label: "Gill Sans" },
+  { value: "Helvetica Neue", label: "Helvetica Neue" },
+  { value: "Futura", label: "Futura" },
+  { value: "Bodoni", label: "Bodoni" },
+  { value: "Rockwell", label: "Rockwell" },
+  { value: "Century Gothic", label: "Century Gothic" },
+  { value: "Calibri", label: "Calibri" },
+  { value: "Candara", label: "Candara" },
+  { value: "Optima", label: "Optima" },
+  { value: "Perpetua", label: "Perpetua" },
+  { value: "Monaco", label: "Monaco" },
+  { value: "Didot", label: "Didot" },
+  { value: "American Typewriter", label: "American Typewriter" },
+  { value: "Copperplate", label: "Copperplate" }
 ];
 
 export const fontSizeOptions = [
@@ -140,6 +166,58 @@ export const fontSizeOptions = [
   {
     value: "36",
     label: "36",
+  },
+  {
+    value: "36",
+    label: "36",
+  },
+  {
+    value: "38",
+    label: "38",
+  },
+  {
+    value: "40",
+    label: "40",
+  },
+  {
+    value: "42",
+    label: "42",
+  },
+  {
+    value: "44",
+    label: "44",
+  },
+  {
+    value: "46",
+    label: "46",
+  },
+  {
+    value: "48",
+    label: "48",
+  },
+  {
+    value: "50",
+    label: "50",
+  },
+  {
+    value: "52",
+    label: "52",
+  },
+  {
+    value: "54",
+    label: "54",
+  },
+  {
+    value: "56",
+    label: "56",
+  },
+  {
+    value: "58",
+    label: "58",
+  },
+  {
+    value: "60",
+    label: "60",
   },
 ];
 
